@@ -66,6 +66,20 @@ private:
  
         return merge(lefNode , rightNode);
     }
+    
+    int findTh(int parent , int left , int right , int k){
+ 
+        if(left == right){
+            return left;
+        }
+        int mid = (left + right) / 2 ;
+        if(Tree[parent * 2 ].x >= k){
+            return findTh(parent * 2 , left , mid , k);
+        }
+        else{
+            return findTh(parent * 2 + 1 , mid +1 , right , k - Tree[parent * 2].x);
+        }
+    }
  
 public:
  
@@ -83,5 +97,9 @@ public:
     node query(int qLeft , int qRight){
         return query(1 , 0 , n- 1 , qLeft  , qRight);
     }
- 
+    
+    int findTh(int k){
+        return findTh(1 , 0 , n - 1 , k);
+    }
+    
 };
