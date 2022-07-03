@@ -1,5 +1,6 @@
 class FenwickTree{
 private:
+    // one base
     int n ;
     vector<ll> a , Tree ;
 
@@ -24,6 +25,11 @@ public:
         }
     }
 
+    void updateRange(int left , int right , int value){
+        add(left , value) ;
+        add(right + 1 , value) ;
+    }
+
     ll sumPrefix(int index){
         ll result = 0;
         for(; index > 0 ; index -= (index &(-index))){
@@ -35,4 +41,5 @@ public:
     ll SumRange(int left , int right){
         return sumPrefix(right) - sumPrefix(left);
     }
+
 };
