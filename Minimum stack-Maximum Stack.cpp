@@ -22,3 +22,5 @@
         G[i] = st.empty() ? n+1 : st.top();
         st.push(i);
     }
+
+// S[i] / G[i] = n + 1 it'e mean no min/max in right array
