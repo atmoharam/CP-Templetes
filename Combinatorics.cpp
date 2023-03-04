@@ -1,18 +1,8 @@
+typedef long long ll;
 const int N = 1e6 + 5 + 5 , M = 1e6 + 2 , mod = 1e9 + 7;
 class combinatorics{
 private:
     vector<ll> fact;
-    ll fP(ll base, ll pw)
-    {
-        if(pw == 0){return 1;}
-        if(pw == 1){return base % mod;}
-        long long halfpow= fP(base, pw / 2);
-        long long res= ((halfpow%mod)*
-                        (halfpow%mod))%mod;
-        if(pw % 2 != 0)
-            res= ((res%mod)*(base % mod)) % mod;
-        return res % mod;
-    }
     ll modInverse(ll a){
         ll x,y,g;
         g=egcd(a,mod,x,y);
@@ -41,6 +31,18 @@ public:
 
     ll Fn(ll x){
         return fact[x];
+    }
+
+    ll fPower(ll base, ll pw)
+    {
+        if(pw == 0){return 1;}
+        if(pw == 1){return base % mod;}
+        long long halfpow= fPower(base, pw / 2);
+        long long res= ((halfpow%mod)*
+                        (halfpow%mod))%mod;
+        if(pw % 2 != 0)
+            res= ((res%mod)*(base % mod)) % mod;
+        return res % mod;
     }
 
     ll nCr(ll x,ll y){
@@ -74,7 +76,7 @@ public:
     }
 
     ll allSame(ll x , ll r){
-        return fP(x , r)%mod;
+        return fPower(x, r) % mod;
     }
 
 };
